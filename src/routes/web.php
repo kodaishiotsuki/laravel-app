@@ -51,6 +51,9 @@ Route::get('/pdelete/category/{id}', [CategoryController::class, 'Pdelete']);
 //For Brand Route
 Route::get('/brand/all', [BrandController::class, 'AllBrand'])->name('all.brand');
 
+Route::post('/brand/store', [BrandController::class, 'StoreBrand'])->name('store.brand');
+
+
 
 
 
