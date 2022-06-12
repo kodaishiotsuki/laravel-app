@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -30,6 +31,13 @@ Route::get('/about', function () {
 
 Route::get('/contacted', [ContactController::class, 'index'])->name('con');
 
+//Category Controller
+Route::get('/category/all', [CategoryController::class, 'AllCat'])->name('all.category');
+
+
+
+
+
 // Route::middleware([
 //     'auth:sanctum',
 //     config('jetstream.auth_session'),
@@ -39,8 +47,6 @@ Route::get('/contacted', [ContactController::class, 'index'])->name('con');
 //         return view('dashboard');
 //     })->name('dashboard');
 // });
-
-
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     //Userモデルから取得
