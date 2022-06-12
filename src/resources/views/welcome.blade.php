@@ -358,7 +358,7 @@
             }
         }
 
-        @media (prefers-color-scheme:dark) {
+        /* @media (prefers-color-scheme:dark) {
             .dark\:bg-gray-800 {
                 --bg-opacity: 1;
                 background-color: #2d3748;
@@ -394,7 +394,7 @@
                 color: #6b7280;
                 color: rgba(107, 114, 128, var(--tw-text-opacity))
             }
-        }
+        } */
     </style>
 
     <style>
@@ -410,7 +410,7 @@
         @if (Route::has('login'))
             <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                 @auth
-                    <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
+                    <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
                 @else
                     <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
@@ -426,8 +426,8 @@
             <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
 
             </div>
-            <h1>Home Page</h1>
-            <a href="{{ url('/') }}">Home</a> |
+            <h1>Dashboard Page</h1>
+            <a href="{{ url('/') }}">Dashboard</a> |
             <a href="{{ URL::to('/about') }}">About</a> |
             <a href="{{ route('con') }}">Contact</a> |
 

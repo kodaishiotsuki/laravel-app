@@ -358,7 +358,7 @@
             }
         }
 
-        @media (prefers-color-scheme:dark) {
+        /* @media (prefers-color-scheme:dark) {
             .dark\:bg-gray-800 {
                 --bg-opacity: 1;
                 background-color: #2d3748;
@@ -394,7 +394,7 @@
                 color: #6b7280;
                 color: rgba(107, 114, 128, var(--tw-text-opacity))
             }
-        }
+        } */
     </style>
 
     <style>
