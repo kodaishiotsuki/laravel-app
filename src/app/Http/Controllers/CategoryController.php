@@ -6,6 +6,7 @@ use App\Models\Category;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -25,17 +26,23 @@ class CategoryController extends Controller
         ]);
 
         //Categoryモデル
-        Category::insert([
-            'category_name' => $request->category_name,
-            'user_id' => Auth::user()->id,
-            'created_at' => Carbon::now(),
-        ]);
+        // Category::insert([
+        //     'category_name' => $request->category_name,
+        //     'user_id' => Auth::user()->id,
+        //     'created_at' => Carbon::now(),
+        // ]);
 
         //insert
         // $category = new Category;
         // $category->category_name = $request->category_name;
         // $category->user_id = Auth::user()->id;
         // $category->save();
+
+        //クエリビルダによるデータの挿入
+        $data = array();
+        $data['category_name'] = $request->category_name;
+        $data['user_id'] = Auth::user()->id;
+        DB::table('categories')->insert($data);
 
         return redirect()->back()->with('success', 'category Inserted Successfully');
     }
