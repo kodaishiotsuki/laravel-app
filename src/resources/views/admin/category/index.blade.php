@@ -40,7 +40,7 @@
                                     <tr>
                                         <th scope="row">{{ $categories->firstItem() + $loop->index }}</th>
                                         <td>{{ $category->category_name }}</td>
-                                        <td>{{ $category->user->name }}</td>>
+                                        <td>{{ $category->name }}</td>
                                         <td>
                                             @if ($category->created_at == null)
                                                 <span class="text-danger">No Date Set</span>
