@@ -17,11 +17,15 @@ class CategoryController extends Controller
         //     ->select('categories.*', 'users.name')
         //     ->latest()->paginate(5);
 
+        //全データ
         $categories = Category::latest()->paginate(5);
+
+        //論理削除
+        $trashCat = Category::onlyTrashed()->latest()->paginate(3);
 
         //クエリビルダによるデータ
         // $categories = DB::table('categories')->latest()->paginate(5);
-        return view('admin.category.index', compact('categories'));
+        return view('admin.category.index', compact('categories', 'trashCat'));
     }
 
     public function AddCat(Request $request)
@@ -80,5 +84,12 @@ class CategoryController extends Controller
         DB::table('categories')->where('id', $id)->update($data);
 
         return redirect()->route('all.category')->with('success', 'category Updated Successfully');
+    }
+
+
+    public function SoftDelete($id)
+    {
+        $delete = Category::find($id)->delete();
+        return redirect()->back()->with('success', 'category Soft Delete Successfully');
     }
 }
