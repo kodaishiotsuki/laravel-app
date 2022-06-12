@@ -6,6 +6,16 @@
         </h2>
     </x-slot>
 
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{ session('success') }}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+
+
     <div class="py-12">
         <div class="container">
             <div class="row">
@@ -15,8 +25,10 @@
                             Edit Brand
                         </div>
                         <div class="card-body">
-                            <form action="{{ url('brand/update/' . $brands->id) }}" method="POST">
+                            <form action="{{ url('brand/update/' . $brands->id) }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
+                                <input type="hidden" name="old_image" value="{{ $brands->brand_image }}">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Update Brand Name</label>
                                     <input type="text" class="form-control" name="brand_name" id="exampleInputEmail1"

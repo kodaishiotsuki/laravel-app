@@ -55,6 +55,9 @@ Route::post('/brand/store', [BrandController::class, 'StoreBrand'])->name('store
 
 Route::get('/brand/edit/{id}', [BrandController::class, 'Edit']);
 
+Route::post('/brand/update/{id}', [BrandController::class, 'Update']);
+
+
 
 
 

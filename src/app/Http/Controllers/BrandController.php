@@ -50,4 +50,50 @@ class BrandController extends Controller
         $brands = Brand::find($id);
         return view('admin.brand.edit', compact('brands'));
     }
+
+    public function Update(Request $request, $id)
+    {
+        //バリデーション
+        $validatedData = $request->validate([
+            'brand_name' => "required|min:4",
+        ], [
+            'brand_name.required' => "Please Input Brand Name",
+            'brand_name.min' => "Brand Longer then 4 Characters",
+        ]);
+
+        //更新前の画像
+        $old_image = $request->old_image;
+
+        //画像アップロード
+        $brand_image = $request->file('brand_image');
+
+        //画像付き・画像なしのデータ更新
+        //画像が更新されたら全部更新
+        if ($brand_image) {
+            //ユニークな名前
+            $name_gen = hexdec(uniqid());
+            $img_ext = strtolower($brand_image->getClientOriginalExtension());
+            $img_name = $name_gen . '.' . $img_ext;
+            //保存場所
+            $up_location = 'image/brand/';
+            //DB保存名
+            $last_img = $up_location . $img_name;
+            //ファイルの保存先
+            $brand_image->move($up_location, $img_name);
+
+            unlink($old_image);
+            Brand::find($id)->update([
+                'brand_name' => $request->brand_name,
+                'brand_image' => $last_img,
+                'created_at' => Carbon::now(),
+            ]);
+            return redirect()->back()->with('success', 'Brand Update Successfully');
+        } else {
+            Brand::find($id)->update([
+                'brand_name' => $request->brand_name,
+                'created_at' => Carbon::now(),
+            ]);
+            return redirect()->back()->with('success', 'Brand Update Successfully');
+        }
+    }
 }
