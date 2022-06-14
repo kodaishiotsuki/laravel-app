@@ -60,7 +60,8 @@ Route::post('/brand/update/{id}', [BrandController::class, 'Update']);
 Route::get('/brand/delete/{id}', [BrandController::class, 'Delete']);
 
 
-
+// Multi Image Route
+Route::get('/multi/image', [BrandController::class, 'MultiPic'])->name('multi.image');
 
 
 
